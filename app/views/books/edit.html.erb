@@ -1,0 +1,24 @@
+<h1>Editing Book</h1>
+
+<% if @book.errors.any?  %>
+  <%= pluralize(@book.errors.count, "error")  %> prohibited this book from being saved:
+  <% @book.errors.full_messages.each do |message| %>
+   <%= message %>
+   <% end %>
+<% end %>
+
+
+<%= form_with model:@book, local: true do |f| %>
+<div class="field">
+  <lavel for="book_title">Title</lavel>
+  <%= f.text_field :title %>
+</div>
+<div class="actions">
+  <lavel for="book_body">Body</lavel>
+  <%= f.text_area :body %>
+</div>
+<%= f.submit'Update Book' %>
+<%end%>
+
+
+<p><%=link_to"Show",book_path(@book.id) %>|<%=link_to"Back",books_path %></p>
